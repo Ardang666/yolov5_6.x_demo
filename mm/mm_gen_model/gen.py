@@ -27,7 +27,7 @@ def generate_model_config(args):
     config = mm.BuilderConfig()
 
     # 指定硬件平台
-    assert config.parse_from_string('{"archs":[{"mtp_372": [6,8]}]}').ok()
+    assert config.parse_from_string('{"archs":[{"mtp_372": [6, 8]}]}').ok()
     assert config.parse_from_string('{"opt_config":{"type64to32_conversion":true}}').ok()
     assert config.parse_from_string('{"opt_config":{"conv_scale_fold":true}}').ok()
     assert config.parse_from_string("""{"cross_compile_toolchain_path": "/tmp/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/"}""").ok()
@@ -42,7 +42,7 @@ def generate_model_config(args):
     # 模型输入输出规模可变功能
     if args.shape_mutable == "true":
         assert config.parse_from_string('{"graph_shape_mutable":true}').ok()
-        assert config.parse_from_string('{"dim_range": {"0": {"min": [1, 3, 288, 288], "max": [1, 3, 640, 640]}}}').ok()
+        assert config.parse_from_string('{"dim_range": {"0": {"min": [1, 3, 224, 224], "max": [128, 3, 672, 672]}}}').ok()
     else:
         assert config.parse_from_string('{"graph_shape_mutable":false}').ok()
     
